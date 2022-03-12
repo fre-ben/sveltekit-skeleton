@@ -6,7 +6,7 @@
 	}
 </script>
 
-<h1>Welcome to <strong>{pageTitle}</strong></h1>
+<h1 class="test">Welcome to <strong>{pageTitle}</strong></h1>
 <label>
 	Change me:
 	<input type="text" bind:value={pageTitle} />
