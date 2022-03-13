@@ -1,26 +1,24 @@
 <script context="module" lang="ts">
-	interface Post {
-		title: string;
-		date: Date;
-		body: string;
-	}
-
 	export async function load({ params }: import("@sveltejs/kit/types/internal").LoadInput) {
-		const MarkdownFile = await import(`../../posts/${params.slug}.md`);
+		try {
+			const Post = await import(`../../posts/${params.slug}.md`);
 
-		return {
-			props: {
-				MarkdownFile: MarkdownFile.default,
-				title: MarkdownFile.metadata.title
-			}
-		};
+			return {
+				props: {
+					Post: Post.default
+				}
+			};
+		} catch (e) {
+			return {
+				status: 404,
+				error: "Post not found"
+			};
+		}
 	}
 </script>
 
 <script lang="ts">
-	export let MarkdownFile;
-	export let title: string;
+	export let Post;
 </script>
 
-<h1>title is {title}</h1>
-<MarkdownFile />
+<svelte:component this={Post} />

@@ -7,5 +7,5 @@ declare namespace App {
 	// interface Platform {}
 	// interface Session {}
 	// interface Stuff {}
-	declare module "*.md";
+	// declare module "*.md";
 }
