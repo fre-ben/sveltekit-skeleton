@@ -1,1 +1,6 @@
-# Goodbye!
+---
+title: Goodbye
+slug: goodbye
+---
+
+# {title}
