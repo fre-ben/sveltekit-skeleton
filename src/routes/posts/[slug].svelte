@@ -6,26 +6,21 @@
 	}
 
 	export async function load({ params }: import("@sveltejs/kit/types/internal").LoadInput) {
-		const post: Post = {
-			title: params.slug,
-			date: new Date(),
-			body: "lorem ipsum"
-		};
+		const MarkdownFile = await import(`../../posts/${params.slug}.md`);
+
 		return {
 			props: {
-				post
+				MarkdownFile: MarkdownFile.default,
+				title: MarkdownFile.metadata.title
 			}
 		};
 	}
 </script>
 
 <script lang="ts">
-	export let post: Post;
+	export let MarkdownFile;
+	export let title: string;
 </script>
 
-<h3>{post.title}</h3>
-<p>
-	<em class="text-xs">{post.date}</em>
-	<br />
-	{post.body}
-</p>
+<h1>title is {title}</h1>
+<MarkdownFile />
